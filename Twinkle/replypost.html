@@ -17,7 +17,51 @@
 
         body {
             background-color: #250135;
+            font-family: 'Jeju Myeongjo', serif;
+        }
 
+        p {
+            margin-left : 4rem;
+            margin-right: 4rem;
+        }
+
+        .content-feed {
+            width : 60%;
+            margin:0 auto;
+           
+        }
+
+        .text-box {
+            background-color: #30035E ;
+            opacity : 0.6;
+            color : white;
+            text-align: center;
+            margin:0 auto;
+            border-radius: 20px;
+            height: 20em;
+            padding-top: 5%;
+            padding-bottom: 5%;
+        }
+
+        .container{
+            display: flex;
+            align-items: center;
+        }
+
+
+        .modal{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            background-color: #675D5D;
+            text-align: center;
+            margin:0 auto;
+            border-radius: 20px;
+
+            width: 500px;
+            height: 200px;
         }
 
         
@@ -30,7 +74,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color 
     : #250135">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" style = "color:white" ">TWINKLE</a>
+          <a class="navbar-brand" href="#" style = "color:white">TWINKLE</a>
           
           
         </div>
@@ -38,12 +82,13 @@
     </nav>
 
     <!--아이콘 넣기-->
-    <div class="twinkleimg">
-        <img src="/twinkle.png" alt="#" srcset="">
+    <div class="twinkleimg" style="text-align: center; margin-bottom:30px">
+        <img src="./twinkle.png" alt="#" srcset="">
     </div>
 
+
     <div class="maxim-box">
-        <p style="color:white;text-align:center;margin-bottom:50px;">
+        <p style="color:white;text-align:center;margin-bottom:50px;font-size: 20px">
             오후 네시에 네가 온다면,
             <br>
             난 오후 3시부터 행복해질거야
@@ -65,12 +110,9 @@
 
         </div>
         <div class="right-box">
-            <input type="button" value="화살표표시" class="modalbtn">
+            <input type="image" value="화살표표시" class="modalbtn" src="./fast-forward.png" style="height: 60px;">
 
         </div>
-
-        
-
 
 
     </div>
@@ -80,7 +122,7 @@
     <!--모달창 만들기-->
     <div class="modal">
         <div class="modal-content">
-            <p>편지가 마음에 드셨나요?</p>
+            <p style="color: white">편지가 마음에 드셨나요?</p>
             <div class="star-rate">
                 <form class="myform">
                     <fieldset>

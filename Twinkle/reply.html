@@ -11,6 +11,9 @@
 
     
     <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+
         body {
             background-color: #250135;
         }
@@ -24,22 +27,49 @@
             margin: 0 auto;
         }
 
+        .writer-box{
+            display: flex;
+            justify-items: center;
+            margin: 0 auto;
+            width: 60%;
+        }
+
         .form-box {
             display: flex;
             justify-items: center;
-
+            margin: 0 auto;
+            width: 60%;
         }
         textarea {
             justify-self: center;
             text-align: center;
             opacity: 60%;
             color:white;
-            
+            padding-top: 60%;
         }
 
-        
+        .btn-wrap{
+            display: flex;
+            justify-content: center;
+            justify-content: space-evenly;
+        }
 
-       
+        .btn{
+            flex-basis: 150px;
+            margin-bottom: 2rem;
+            background-color: #FEE45C;
+            border-radius: 10px;
+        }
+
+        input:focus{
+            outline: none;
+        }
+
+       input{
+            border-top: none;
+            border-right: none;
+            border-bottom-color: white;
+       }
 
     </style>
 </head>
@@ -49,7 +79,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color 
     : #250135">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" style = "color:white">TWINKLE</a>  
+          <a class="navbar-brand" href="#" style = "color:white; ">TWINKLE</a>  
         </div>
       </nav>
 
@@ -79,9 +109,9 @@
                 <div >
                     <textarea name="" id="" cols="80" rows="17" style="background-color : #30035E; color:white;border-radius:20px "></textarea>
                 </div>
-                <div style="margin-top: 40px;">
-                    <button type="submit">답장 보내기</button>
-                    <button type="reset">다시 쓰기</button>
+                <div class="btn-wrap" style="margin-top: 40px; width: 600px">
+                    <button class="btn" type="submit">답장 보내기</button>
+                    <button class="btn" type="reset">다시 쓰기</button>
                 </div>
             </form>
           </div>
