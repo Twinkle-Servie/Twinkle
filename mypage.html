@@ -18,6 +18,17 @@
             font-family: 'Jeju Myeongjo', serif;
         }
 
+        .twinkleimg {
+            display: flex;
+            padding-bottom: 20px;
+            
+            
+        }
+        img {
+            justify-self : center;
+            margin:0 auto;
+        }
+
         .container-box {
             display:flex;
         }
@@ -33,17 +44,69 @@
        
 
         .left {
-            margin-left : 15em;
+            margin-left : 17em;
 
         }
 
+        .right {
+            margin-left : 17em;
+
+        }
+
+        
+
         .maxim-box {
+            margin-bottom: 5em;
             
+
         }
 
         div[class="maxim-box"] p {
             text-align: center;
         }
+
+        input {
+            opacity: 70%;
+            color : white;
+        }
+
+        p {
+            opacity: 70%;
+            margin-bottom: 5px;
+        }
+
+        div[class$="-box"]{
+            margin-top: 30px;
+        }
+
+        .starimg {
+            display:flex;
+        }
+
+        .starimg-box {
+            align-self: center;
+            justify-content: center;
+
+        }
+
+        .starpoint {
+            margin-top : 50px;
+        }
+
+        input:focus{
+            outline:none;
+            
+        }
+
+        input {
+            border-top:none;
+            border-right:none;
+            border-bottom-color:white;
+            width :20em;
+            
+            
+        }
+
 
         
 
@@ -93,26 +156,26 @@
                         <input type="password" name="retrypw" id="" required value="codingstage">
     
                     </div>
-                    <div class="birthdate">
+                    <div class="birthdate-box">
                         <p>생년월일</p>
                         <input type="date" name="" id="" value="2012-09-12">
     
                     </div>
                 </div>
-                <div class="btn-box">
-                    <input class="btn" type="button" value="수정하기" type="submit">
-                    <input  class="btn" type="button" value="내가 쓴 편지함 가기">
+                <div class="btn-box" style="margin-top:30px;">
+                    <input class="btn" type="button" value="수정하기" type="submit" style="opacity:100%;width:7em;margin-right:2rem">
+                    <input  class="btn" type="button" value="내가 쓴 편지함 가기" style="opacity:80%;width:10em">
                 </div>
         
     
             </div>
             <div class="right">
                 <div class="starimg">
-                    <img src="./twinkle.png" alt="#" srcset="">
+                    <img class="starimg-box" src="./twinkle.png" alt="#" srcset="" style="width :180px;">
                 </div>
-                <div>
-                    <p>별 포인트</p>
-                    <p>150점</p>
+                <div class="starpoint" style="display:flexbox;">
+                    <p style="text-align:center">별 포인트</p>
+                    <p style="text-align:center">150점</p>
 
                 </div>
     
