@@ -66,15 +66,16 @@
     </div>
     <!--ID & 비밀번호-->
     <form action="" method="post">
-        <p><input type="text" placeholder="아이디" value="아이디" style="font-family: 'Jeju Myeongjo', serif;background-color:#250135;color:white; width:23em;height:35px;font-size:18px;"></p>
+        <p><input type="text" id ="id"placeholder="아이디" value="아이디" style="font-family: 'Jeju Myeongjo', serif;background-color:#250135;color:white; width:23em;height:35px;font-size:18px;"></p>
         <br/>
-        <p><input type="text" placeholder="비밀번호"  style="font-family: 'Jeju Myeongjo', serif;background-color:#250135;color:white; width:23em;height:35px;font-size:18px;"></p>
+        <p><input type="text" placeholder="비밀번호" id="pw" style="font-family: 'Jeju Myeongjo', serif;background-color:#250135;color:white; width:23em;height:35px;font-size:18px;"></p>
         <br />
-        <p><button type="submit" style="font-family: 'Jeju Myeongjo', serif; border-radius:17px;" href="#">편지 보내러 가기</button></p>
+        <p><button type="submit" onclick="login();" style="font-family: 'Jeju Myeongjo', serif; border-radius:17px;" href="#">편지 보내러 가기</button></p>
         <br />
     </form>
     <!--회원가입-->
     <a href="/register.html">회원 가입</a>
+    <script src="js/login.js"></script>
     
 </body>
 </html>

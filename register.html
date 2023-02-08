@@ -114,19 +114,32 @@
     <div class="form-box">
         <form action="" method="post">
             <p>아이디</p>
-            <p><input type="text"></p>
+            <p><input type="text" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력." required minlength="4" maxlength="12"></p>
             <p>이메일</p>
             <p><input type="email" name="" id=""></p>
             <p>닉네임</p>
-            <p><input type="text"></p>
+            <p><input type="text" required></p>
             <p>비밀번호</p>
-            <p><input type="password" name="" id=""></p>
+            <p><input type="password" name="" id="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력."required></p>
+            <p>비밀번호 확인</p>
+            <p><input type="password" name="" id="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력."required></p>
             <p>생년월일</p>
-            <p><input type="date" name="" id=""></p>
+            <p>
+                <input type="text" name="my_year" id="my_year" value="" size="4" maxlength="4" required>년 
+                <input type="text" name="my_month" id="my_month" value="" size="2" maxlength="2" required>월 
+                <input type="text" name="my_day" id="my_day" value="" size="2" maxlength="2" required>일 
+            </p>
+            
             
             <input class="btn" type="button" value="회원가입하기" style="background-color:#FEE45C">
         </form>
     </div>
+
+    <div>
+        <input type="button" value="뒤로가기" onclick="back();">
+    </div>
+
+    <script src="js/register.js"></script>
 
     
 </body>
