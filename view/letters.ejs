@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--나에게 도착한 익명의 편지들 페이지-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+
+        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+        a {
+           font-size: 50px; 
+        }
+
+        body {
+            background-color: #250135;
+            font-family: 'Jeju Myeongjo', serif;            
+        }
+
+        
+        .content-feed {
+            width : 60%;
+            margin:0 auto;
+        }
+
+        .text-box {
+            background-color: #30035E ;
+            opacity : 0.6;
+            color : white;
+            text-align: center;
+            margin:0 auto;
+            border-radius: 20px;
+            height: 20em;
+        }
+        p {
+            
+            margin-left : 4rem;
+            margin-right: 4rem;
+            height:auto;
+            
+        }
+
+        button{
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            background-color: #FEE45C;
+            border-radius: 10px;
+            margin-left: 45%;
+            
+        }
+
+        .twinkleimg {
+            display: flex;
+            padding-bottom: 20px;
+            
+        }
+        img {
+            justify-self : center;
+            margin:0 auto;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    {% extends 'layout.html' %}
+
+    {% block content %}
+    
+    <!--아이콘 넣기-->
+    <div class="twinkleimg" style="margin-top:40px;margin-bottom:40px;">
+        <img src="/twinkle.png" alt="#" srcset="">
+    </div>
+
+    <!--익명의 편지들-->
+    <div>
+            <!-- 여기서 익명의 편지 내용을 보여줌, for 문 배열 -->
+            <% for (var i=0; i < letters.length; i++) { %>
+                <div class="content-feed">
+                    <div class="text-box">
+                        <p style="padding-top:2em">
+                            <%=letters[i]%>
+                        </p>
+                    </div>
+                </div>
+            <%}%>
+
+            <!--답변하기 누르면 답변작성 페이지(reply.html)로-->
+            <button onclick="location.href='';">
+                답변하기
+            </button>
+
+        <!-- 샘플 -->
+        <div class="content-feed">
+            <div class="text-box">
+                <p style="padding-top:2em">
+                    오늘 집에 오면서 하늘을 봤는데 아주 까마득한 하늘에 초승달이 희미하게 떠있었어요. 곧 사라질 것 같이 희미하게, 가냘프게 떠있었죠. <br/>
+                    마치 제 모습을 보는 것만 같아서 안쓰러웠어요. 나한테 다가오지마 하고 그림자 뒤로 숨어버리고 희미하게나마 비추는 내 모습은 차갑고 상처투성이일뿐이니까요... <br/><br/>달도 저처럼 상처투성이일 거에요. 홀로 떠있느라 외롭고, 상처 받기 무서워 사람들을 밀어내고 밀어내려 하지만 다른 사람들을 좋아하고요 홀로 떠있느라 외로울 거에요. 밤마다 하늘을 보며 달을 찾는 이들이 적어져 쓸쓸할거에요. 자기보다 빌딩 숲이 더 환하게 빛나서 슬플거에요...
+                </p>
+            </div>
+            <button>답변하기</button>
+
+
+        </div>
+        <div class="content-feed">
+            <div class="text-box">
+                <p style="padding-top:2em;">
+                    오늘 집에 오면서 하늘을 봤는데 아주 까마득한 하늘에 초승달이 희미하게 떠있었어요. 곧 사라질 것 같이 희미하게, 가냘프게 떠있었죠.<br/> 
+                    마치 제 모습을 보는 것만 같아서 안쓰러웠어요. 나한테 다가오지마 하고 그림자 뒤로 숨어버리고 희미하게나마 비추는 내 모습은 차갑고 상처투성이일뿐이니까요... <br/><br/>달도 저처럼 상처투성이일 거에요. 홀로 떠있느라 외롭고, 상처 받기 무서워 사람들을 밀어내고 밀어내려 하지만 다른 사람들을 좋아하고요 홀로 떠있느라 외로울 거에요. 밤마다 하늘을 보며 달을 찾는 이들이 적어져 쓸쓸할거에요. 자기보다 빌딩 숲이 더 환하게 빛나서 슬플거에요...
+                </p>
+
+            </div>
+            <button>답변하기</button>
+
+        </div>
+    </div>
+
+    {% endblock %}
+
+    
+</body>
+</html>
