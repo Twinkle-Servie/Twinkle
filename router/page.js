@@ -6,9 +6,7 @@ const router = express.Router();
 // 모든 요청마다 실행
 router.use((req,res,next)=>{
     res.locals.user = null;  // res.locals는 변수를 모든 템플릿 엔진에서 공통으로 사용, 즉 user는 전역 변수로 이해하면 됨(아래도 동일)
-    res.locals.followerCount = 0;
-    res.locals.followingCount = 0;
-    res.locals.followerIdList = [];
+    res.locals.posts = [];
     next();
 });
 
@@ -27,7 +25,7 @@ router.get('/', (req, res, next) => {
     const myposts = [];
     res.render('main', {
         title: 'Twinkle',
-        myposts
+        myposts,
         
     });
 });
