@@ -1,5 +1,6 @@
 // app.js에서 기본 router로 설정한 page.js
 const express = require('express');
+const {isLoggedIn, isNotLoggedIn} = require('./middlewares'); //middlewares의 두 미들웨어를 가져옴
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.use((req,res,next)=>{
 });
 
 // http://127.0.0.1:8001/profile 에 get요청이 왔을 때 
-router.get('/profile', (req, res) => {
+router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile', { title: '내 정보'});
 });
 
@@ -20,12 +21,14 @@ router.get('/join', (req, res)=>{
     res.render('join', {title: '회원가입 '});
 });
 
+
+
 // http://127.0.0.1:8001/ 에 get요청이 왔을 때 
-router.get('/', (req, res, next) => {
-    const myposts = [];
+router.get('/', isLoggedIn, (req, res, next) => {
+    const posts = [];
     res.render('main', {
         title: 'Twinkle',
-        myposts,
+        posts,
         
     });
 });
