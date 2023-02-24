@@ -3,6 +3,7 @@
 const express = require('express');
 const ejs = require("ejs");
 const app = express();
+const bodyParser = require('body-parser'); // npm install body-parser
 
 let letters = Array();
 
@@ -16,10 +17,20 @@ app.set('views', './view');
 
 app.use(express.static('public'));
 
+// json post 를 사용하려면 추가
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
+
 app.get('/letters', function(req, res) {
     res.render('letters', {
             letters: letters
     })
+});
+
+// 답장 서버에 저장 관련
+app.post('/memoadd', function(req,res) {
+	//req.body.msg // 답장인데.. 어디 저장하지
+	res.json({result: 'ok'});
 });
 
 // 페이지를 찾을 수 없음 오류 처리
