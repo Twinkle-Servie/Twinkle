@@ -11,4 +11,17 @@ const sequelize = new Sequelize(
 
 //new Sequelize로 Mysqli연결 객체 생성하기
 
-db
+db.sequelize = sequelize;
+db.User =  User;
+db.Post = Post;
+
+//각 객체의 실행
+User.init(Sequelize);
+Post.init(sequelize);
+
+//관계 연결하기
+User.associate(db);
+Post.associate(db);
+
+module.exports = db;
+
