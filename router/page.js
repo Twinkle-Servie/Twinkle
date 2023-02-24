@@ -1,6 +1,7 @@
 // app.js에서 기본 router로 설정한 page.js
 const express = require('express');
 const {isLoggedIn, isNotLoggedIn} = require('./middlewares'); //middlewares의 두 미들웨어를 가져옴
+const {Post,User} = require('../models');
 
 const router = express.Router();
 
@@ -24,13 +25,25 @@ router.get('/join',isNotLoggedIn, (req, res)=>{
 
 
 // http://127.0.0.1:8001/ 에 get요청이 왔을 때 
-router.get('/', isLoggedIn, (req, res, next) => {
-    const posts = [];
-    res.render('main', {
-        title: 'Twinkle',
-        posts,
-        
-    });
+router.get('/', async(req, res, next) =>{
+    try {
+        const posts = await Post.findAll({
+            //db에서 게시글을 조회함
+            include : {
+                model : User,
+                attributes: ["id", "nickname"],   //닉네임과 id를 제공한다. 
+            },
+            order : [["createAt", "DESC"]], //게시글의 순서를 최신순으로 정렬함
+        }); 
+        res.render("main", {
+            title : "Twinkle",
+            posts : posts,
+        });
+
+    } catch(err) {
+        console.error(err);
+        next(err);
+    }
 });
 
 module.exports = router;
