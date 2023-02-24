@@ -17,7 +17,7 @@ router.get('/profile', isLoggedIn, (req, res) => {
 });
 
 // http://127.0.0.1:8001/join 에 get요청이 왔을 때 
-router.get('/join', (req, res)=>{
+router.get('/join',isNotLoggedIn, (req, res)=>{
     res.render('join', {title: '회원가입 '});
 });
 
