@@ -1,28 +1,32 @@
-//전체적인 설정(사용 관련)
-
-const express= require('express');
-//서버에 필요한 기능인 미들웨어
-const cookieParser = require('cookie-parser');  // 요청된 쿠키를 쉽게 추출할 수 있도록 함
+const express = require('express');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const path = require('path');   //파일과 폴더 경로 작업기능 모듈 불러오기 
+const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
-//
+const passport = require('passport');// require('./passport/index.js')와 같음
 
-dotenv.config(); 
-//.env 파일을 쓸 수 있도록 하는 함수 
-
-//기본 router로 page.js 설정해주기 
+dotenv.config(); // .env 파일을 쓸 수 있게 함
+passportConfig(); //passport 사용할 수 있도록함 // 패스포트 설정, 한 번 실행해두면 ()에 있는 deserializeUser 계속 실행
 const pageRouter = require('./routes/page');
+const {sequelize} = require('./models');
 
-const app = express();  //미들웨어를 어플리케이션에 추가함 
-app.set('port', process.env.PORT || 8001);  //process.env라른 객체에 port라는 설정이 있다면 그 속성을 사용하고 없다면 3000을 사용한다는 뜻이다.
-app.set('view engin', 'html');
+
+const app = express();
+app.set('port', process.env.PORT || 8001);
+app.set('view engine', 'html');
 nunjucks.configure('views', {
-    express : app,
-    watch : true,
+    express: app,
+    watch: true,
 });
+//sequelize와 db를 연결하기 
+sequelize.sync({force : false}).then(() => {
+    console.log('데이터베이스 연결에 성공하셨다면 당근을 흔들어주세요');
+})
+.catch((err) =>{
+    console.error(err);
+})
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -36,20 +40,19 @@ app.use(session({
     saveUninitialized: false,  // saveUninitialized : 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 설정
     secret: process.env.COOKIE_SECRET,
     cookie: {
-        httpOnly: true,
-         // httpOnly: 클라이언트에서 쿠키를 확인하지 못하게 함
+        httpOnly: true, // httpOnly: 클라이언트에서 쿠키를 확인하지 못하게 함
         secure: false, // secure: false는 https가 아닌 환경에서도 사용 가능 - 배포할 때는 true로 
     },
 }));
 
+// 라우터 연결
 app.use('/', pageRouter);
 
-//라우터가 없을 때 에러코드 띄우기
-app.use((req, res, next)=>{
-    const error = new Error('${req.method} ${req.url} 라우터가 없습니다.');
+// 라우터가 없을 때 실행 
+app.use((req,res,next)=>{
+    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
     error.status = 404;
     next(error);
-
 });
 
 app.use((err, req, res, next) => {
@@ -59,10 +62,9 @@ app.use((err, req, res, next) => {
     res.render('error');
 });
 
+app.use(passport.initialize());// 요청(req 객체)에 passport 설정을 심음
+app.use(passport.session());
+
 app.listen(app.get('port'), () => {
-    console.log(app.get('port') , '번 포트에서 대기하고 있음')
+    console.log(app.get('port'), '번 포트에서 대기 중');
 });
-
-
-
-

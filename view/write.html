@@ -124,7 +124,7 @@
           </div>
           <!--글쓰기 영역-->
           <div class="write-box">
-            <form action="" method="post">
+            <form action="/post" method="post" enctype="multipart/form-data">
                 <div class="textarea-box" >
                     <textarea name="" id="input-letter" cols="75" rows="17" style="background-color : #30035E; color:white;border-radius:20px;padding-top:70px;padding-right:50px;padding-left:50px;"></textarea>
                 </div>
@@ -134,5 +134,13 @@
                 </div>
             </form>
           </div>
+
+          {% block script %}
+
+            <script>
+                if(document.get)
+            </script>
+
+          {% endblock %}
     </body>
 </html>

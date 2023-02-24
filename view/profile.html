@@ -117,6 +117,7 @@
 </head>
 <body>
         <!--nav 바 만들기-->
+        {% extends 'layout.html' %}
     
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color 
         : #250135">
@@ -127,6 +128,8 @@
             </div>
     
         </nav>
+
+        {% block content %}
         <!--twinkle로고 가운데 배치-->
         <div class="twinkleimg">
             <img src="./twinkle.png" alt="#" srcset="">
@@ -139,27 +142,27 @@
                 <div class="info-box">
                     <div class="nickname-box">
                         <p>닉네임</p>
-                        <input type="text" name ="nick" required value="코슷테">
+                        <input type="text" name ="nick" required value="{{nickname}}">
                         
                     </div>
                     <div class="id-box">
                         <p>아이디</p>
-                        <input type="text" name ="id" required value="codingstage">
+                        <input type="text" name ="id" required value="{{id}}">
                     </div>
                     <div class="password-box">
                         <p>비밀번호</p>
-                        <input type="text" name="pw" required value="codingstage">
+                        <input type="text" name="pw" required value="{{password}}">
     
         
                     </div>
                     <div class="retryps-box">
                         <p>비밀번호 확인</p>
-                        <input type="password" name="retrypw" id="" required value="codingstage">
+                        <input type="password" name="retrypw" id="" required value="{{password}}">
     
                     </div>
                     <div class="birthdate-box">
                         <p>생년월일</p>
-                        <input type="date" name="" id="" value="2012-09-12">
+                        <input type="date" name="" id="" value="{{birthdate}}">
     
                     </div>
                 </div>

@@ -22,7 +22,7 @@ var pw = document.querySelector("pw");
 var check_pw = document.querySelector("pwd_check");
 
 if (pw.value != check_pw.value) {
-    alert("비밀번호가 일치하지 않습니다. 확인해주 세요.");
+    alert("비밀번호가 일치하지 않습니다. 확인해주세요.");
     return false;
 }
 
@@ -31,3 +31,9 @@ else{
 }
 
 }
+
+window.onload =()=>{
+    if(new URL(location.href).searchParams.get('error')){
+        alert('이미 존재하는 아이디입니다.');
+    }
+};
