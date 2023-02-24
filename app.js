@@ -5,9 +5,13 @@ const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const passport = require('passport');// require('./passport/index.js')와 같음
 
 dotenv.config(); // .env 파일을 쓸 수 있게 함
+passportConfig(); //passport 사용할 수 있도록함 // 패스포트 설정, 한 번 실행해두면 ()에 있는 deserializeUser 계속 실행
 const pageRouter = require('./routes/page');
+const {sequelize} = require('./models');
+
 
 const app = express();
 app.set('port', process.env.PORT || 8001);
@@ -16,6 +20,13 @@ nunjucks.configure('views', {
     express: app,
     watch: true,
 });
+//sequelize와 db를 연결하기 
+sequelize.sync({force : false}).then(() => {
+    console.log('데이터베이스 연결에 성공하셨다면 당근을 흔들어주세요');
+})
+.catch((err) =>{
+    console.error(err);
+})
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -50,6 +61,9 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error');
 });
+
+app.use(passport.initialize());// 요청(req 객체)에 passport 설정을 심음
+app.use(passport.session());
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
