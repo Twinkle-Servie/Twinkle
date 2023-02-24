@@ -51,10 +51,12 @@ router.post('/login', isNotLoggedIn, (req, res, next) =>{
 });
 
 //로그아웃 라우터 만들기 
-router.post('/login', isNotLoggedIn, (req, res, next) =>{
-    passport.authenticate('local', (authError, user, info)=>{
-        if(authError){
-            console.error(auth)
-        }
-    })
-})
+router.post('/logout', isLoggedIn, (req, res) =>{
+    req.logout(); //req.user 객체를 제거한다. 
+    req.session.destroy();
+    //req.session 객체의 내용을 제거함 -> 세션 정보를 지운다. 
+    redirect('/'); //메일 페이지로 돌아간다. 
+
+   
+    });
+module.exports = router;
