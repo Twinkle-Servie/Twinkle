@@ -1,4 +1,4 @@
-// app.js에서 기본 router로 설정한 page.js
+// 기본 router로 설정한 page.js
 const express = require('express');
 const {isLoggedIn, isNotLoggedIn} = require('./middlewares'); //middlewares의 두 미들웨어를 가져옴
 const {Post,User} = require('../models');
@@ -8,7 +8,7 @@ const router = express.Router();
 // 모든 요청마다 실행
 router.use((req,res,next)=>{
     res.locals.user = null;  // res.locals는 변수를 모든 템플릿 엔진에서 공통으로 사용, 즉 user는 전역 변수로 이해하면 됨(아래도 동일)
-    res.locals.posts = [];
+   
     next();
 });
 
@@ -37,7 +37,7 @@ router.get('/', async(req, res, next) =>{
         }); 
         res.render("main", {
             title : "Twinkle",
-            posts : posts,
+            posts : posts,  //조회 후 views/main.html의 페이지를 렌더링할 떄 전체 게시글을 twits 변수로 저장한ㄷ. 
         });
 
     } catch(err) {

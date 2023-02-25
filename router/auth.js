@@ -56,7 +56,5 @@ router.post('/logout', isLoggedIn, (req, res) =>{
     req.session.destroy();
     //req.session 객체의 내용을 제거함 -> 세션 정보를 지운다. 
     redirect('/'); //메일 페이지로 돌아간다. 
-
-   
     });
 module.exports = router;
