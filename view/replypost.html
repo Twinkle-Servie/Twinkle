@@ -68,16 +68,7 @@
             border-color: #FEE45C;
         }
 
-        .star{
-            opacity: 20;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
 
-        .active {
-            color: black;
-            opacity: 100;
-        }
     </style>
 </head>
 <script>
@@ -86,9 +77,8 @@
         const modal = document.getElementById("starmodal");
         // 어떻게 띄우니... 모달창 가져와서 띄우기
         modal.style.display = "flex";
-        console.log("들어와?");
 
-            // 별점 기록 관련, 제출하기 누르기 전까지 수정 가능
+        // 별점 기록 관련, 제출하기 누르기 전까지 수정 가능
         const stars = document.querySelectorAll("#rate");
         console.log(stars);
         stars.forEach((star, index1) => {
@@ -99,18 +89,16 @@
             });
         }
         );
-
-        }
-
-
-    
+    }
 
     // 별점 제출하면 모달창 내리고 다음 답장 로드, 답장한 사람 별가루? 증가
     function load_reply(){
+
         const modal = document.getElementById("starmodal");
         modal.style.display = "none";   // 모달 내리기
         // 다음 답장 로드
     }
+
 </script>
 
 <body>
@@ -171,7 +159,7 @@
                         <input type="radio" name="reviewStar" value="2" id="rate4" style="opacity:0; height: 0; width:0;"><label for="rate4"></label><img src = "./star-line-yellow-icon.png" class="star" id="rate" height = "70px" width = "70px" style="margin: 10px; cursor: pointer;"/>
                         <input type="radio" name="reviewStar" value="1" id="rate5" style="opacity:0; height: 0; width:0;"><label for="rate5"></label><img src = "./star-line-yellow-icon.png" class="star" id="rate" height = "70px" width = "70px" style="margin: 10px; cursor: pointer;"/>
                     </fieldset>
-                    <button type="submit" onclick="load_reply()">제출하기</button>
+                    <button type="submit" onclick="load_reply()">마음 전하기</button>
                 </form>
                 
 
