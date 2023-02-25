@@ -7,6 +7,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');// require('./passport/index.js')와 같음
+const webSocket = require('./socket'); //웹소켓 가져옴
 
 dotenv.config(); // .env 파일을 쓸 수 있게 함
 passportConfig(); //passport 사용할 수 있도록함 // 패스포트 설정, 한 번 실행해두면 ()에 있는 deserializeUser 계속 실행
@@ -18,6 +19,7 @@ const userRouter = require('./router/user');
 
 const {sequelize} = require('./models');
 const passportConfig = require('./passport');
+const { Socket } = require('socket.io');
 
 
 const app = express();
@@ -53,6 +55,8 @@ app.use(session({
     },
 }));
 
+
+
 // 라우터 연결
 app.use('/', pageRouter);
 app.use('/', authRouter);
@@ -79,3 +83,9 @@ app.use(passport.session());
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
+
+//웹 소켓 익스프레스에 연결시켰음
+const server = app.listen(app.get('port'),()=>{console.log(app.get('port'), '번 포트에서 대기 중입니다.')});
+
+webSocket(server);
+
