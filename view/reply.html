@@ -14,10 +14,23 @@
         body {
             background-color: #250135;
         }
+
+        button{
+            margin-bottom: 3rem;
+            background-color: #FEE45C;
+            border-radius: 10px;            
+        }
+
         .twinkleimg {
             display: flex;
             margin-bottom : 40px;
 
+        }
+
+        .writer-box {
+            position: absolute;
+            left: 40%;
+            top: 35%;
         }
 
         img {
@@ -25,16 +38,18 @@
         }
 
         .form-box {
-            display: flex;
+            position: absolute;
+            left: 30%;
+            top: 45%;
             justify-items: center;
 
         }
+
         textarea {
             justify-self: center;
             text-align: center;
             opacity: 60%;
             color:white;
-            
         }
 
 
@@ -88,7 +103,7 @@
       <div>
         <div class="twinkleimg">
             <!--아이콘-->
-            <img src="/twinkle.png" alt="#" srcset="" style="justify-content: center;">
+            <img src="./twinkle.png" alt="#" srcset="" style="justify-content: center;">
         </div>
         <div class="maxim-box">
             <p style="color:white;text-align:center;margin-bottom:50px;">
@@ -102,7 +117,7 @@
             <span  class="writer" style="color:white; margin-right:10px;">
                 From.
             </span>
-            <input type="text" style="margin-bottom: 70px ; background-color:#250135; color:white">
+            <input type="text" style="margin-bottom: 50px ; background-color:#250135; color:white;">
           </div>
           <!--글쓰기 영역-->
           <div class="form-box">
@@ -111,8 +126,8 @@
                     <textarea name="" id="" cols="80" rows="17" style="background-color : #30035E; color:white;border-radius:20px "></textarea>
                 </div>
                 <div style="margin-top: 40px;">
-                    <button type="submit" onclick="send_reply()">답장 보내기</button>
-                    <button type="reset" onclick="rewrite()">다시 쓰기</button>
+                    <button type="submit" onclick="send_reply()" >답장 보내기</button>
+                    <button type="reset" onclick="rewrite()" >다시 쓰기</button>
                 </div>
             </form>
           </div>
