@@ -1,3 +1,4 @@
+//모듈 불러옴
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
@@ -6,11 +7,19 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');// require('./passport/index.js')와 같음
+const webSocket = require('./socket'); //웹소켓 가져옴
 
 dotenv.config(); // .env 파일을 쓸 수 있게 함
 passportConfig(); //passport 사용할 수 있도록함 // 패스포트 설정, 한 번 실행해두면 ()에 있는 deserializeUser 계속 실행
-const pageRouter = require('./routes/page');
+
+//라우터 연결
+const pageRouter = require('./router/page');
+const postRouter = require('./router/post');
+const userRouter = require('./router/user');
+
 const {sequelize} = require('./models');
+const passportConfig = require('./passport');
+const { Socket } = require('socket.io');
 
 
 const app = express();
@@ -26,9 +35,10 @@ sequelize.sync({force : false}).then(() => {
 })
 .catch((err) =>{
     console.error(err);
-})
+});
 
-app.use(morgan('dev'));
+app.use(morgan('dev'));// morgan 연결 후 localhost:3000에 다시 접속하면 기존 로그 외 추가적인 로그를 볼 수 있음
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -45,8 +55,13 @@ app.use(session({
     },
 }));
 
+
+
 // 라우터 연결
 app.use('/', pageRouter);
+app.use('/', authRouter);
+app.use('/post', postRouter);
+app.use('/user', userRouter);
 
 // 라우터가 없을 때 실행 
 app.use((req,res,next)=>{
@@ -68,3 +83,9 @@ app.use(passport.session());
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
+
+//웹 소켓 익스프레스에 연결시켰음
+const server = app.listen(app.get('port'),()=>{console.log(app.get('port'), '번 포트에서 대기 중입니다.')});
+
+webSocket(server);
+
